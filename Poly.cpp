@@ -19,7 +19,9 @@
 double& Poly::operator[] (const int index) {
 	unsigned int i = words_no;
 	words_no++;
-	polynomial.at(i).index = index;
+	word w;
+	w.index = index;
+	polynomial.emplace_back(w);
 	return polynomial.at(i).coeff;
 }
 
@@ -35,7 +37,6 @@ double& Poly::operator[] (const int index) {
 
 Poly::Poly() {
 	words_no = 0;
-	polynomial.push_back(word(0, 0));
 }
 
 //void Poly::print(){
@@ -43,17 +44,19 @@ Poly::Poly() {
 //}
 
 ostream &operator<<(ostream &os, const Poly &poly) {
-	int i = poly.words_no - 1;
-	while(i >= 0) {
-		double coeff = poly.polynomial.at(i).coeff;
-		int index = poly.polynomial.at(i).index;
+	bool notFirst = false;
+	bool sign = false;
+	for (auto iterator : poly.polynomial) {
+		double coeff = iterator.coeff;
+		int index = iterator.index;
 
-		if(i != 0) {
-			if(coeff < 0) {
-				os << " - ";
-			} else {
+		if(coeff < 0) {
+			os << " - ";
+			sign = true;
+		}
+
+		if(notFirst && !sign) {
 				os << " + ";
-			}
 		}
 
 		if(coeff != 0) {
@@ -67,8 +70,7 @@ ostream &operator<<(ostream &os, const Poly &poly) {
 		if(index > 1) {
 			os << "^" << index;
 		}
-
-		i--;
+		notFirst = true;
 	}
 	return os;
 }

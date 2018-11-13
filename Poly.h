@@ -13,8 +13,13 @@ class Poly {
 private:
 //	class Word;
 	struct word{
+		word(){
+			coeff = 0;
+			index = 0;
+		};
 		word(double c){
 			coeff = c;
+			index = 0;
 		}
 		word(int i, double c){
 			index = i;
