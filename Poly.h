@@ -11,11 +11,14 @@ using namespace std;
 
 class Poly {
 private:
-//	class Word;
 	struct word{
 		word(){
 			coeff = 0;
 			index = 0;
+		};
+		word(int i){
+			coeff = 0;
+			index = i;
 		};
 		int index;
 		double coeff;
@@ -26,22 +29,14 @@ private:
 public:
 	Poly();
 	Poly(double coeff);
+	Poly(const Poly& p);
 	~Poly() = default;
-
-//	Poly& operator= (double coeff);
+	Poly& operator= (const Poly& p);
+	friend Poly operator+ (const Poly& p1, const Poly& p2);
 	double& operator[] (int index);
 	friend ostream& operator<< (ostream& ostr, const Poly& poly);
-	//void print();
 };
 
 
-//
-//class Poly::Word {
-//private:
-//	int index;
-//	double coeff;
-//public:
-//	Word()=default;
-//	~Word()=default;
-//};
+
 #endif //POLYNOMIAL_POLY_H

@@ -18,6 +18,8 @@ int main() {
 
     cout << "Polynomial p2: " << p2 << endl;							// Print p2
 
+    Poly pp(p1);
+    cout << "copied p1 to pp: " << pp << endl;
 //    Poly p3 = p1 + p2;													// Add p1 and p2
 //    cout << "Sum of polynomials p1 and p2: " << p3 << endl;
 //
