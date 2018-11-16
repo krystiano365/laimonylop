@@ -17,27 +17,21 @@ private:
 			coeff = 0;
 			index = 0;
 		};
-		word(double c){
-			coeff = c;
-			index = 0;
-		}
-		word(int i, double c){
-			index = i;
-			coeff = c;
-		}
 		int index;
 		double coeff;
 	};
+	double freeTerm;
 	unsigned int words_no;
 	vector<word> polynomial;
 public:
 	Poly();
 	Poly(double coeff);
-	~Poly()= default;
-	word operator[] (unsigned int i);
+	~Poly() = default;
+
+//	Poly& operator= (double coeff);
 	double& operator[] (int index);
 	friend ostream& operator<< (ostream& ostr, const Poly& poly);
-	void print();
+	//void print();
 };
 
 

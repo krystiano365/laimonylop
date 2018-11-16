@@ -11,13 +11,13 @@ int main() {
 
     cout << "Polynomial p1: " << p1 << endl;							// Print p1
 
-//    Poly p2 = 5;														// Declare object representing polynomial p2 = 5
-//    p2[4] = 1;															// Specify additional coefficients of p2 = x^4 - 6x^2 + 3x + 5
-//    p2[2] = -6;
-//    p2[1] = 3;
-//
-//    cout << "Polynomial p2: " << p2 << endl;							// Print p2
-//
+    Poly p2 = 5;														// Declare object representing polynomial p2 = 5
+    p2[4] = 1;															// Specify additional coefficients of p2 = x^4 - 6x^2 + 3x + 5
+    p2[2] = -6;
+    p2[1] = 3;
+
+    cout << "Polynomial p2: " << p2 << endl;							// Print p2
+
 //    Poly p3 = p1 + p2;													// Add p1 and p2
 //    cout << "Sum of polynomials p1 and p2: " << p3 << endl;
 //
