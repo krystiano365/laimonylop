@@ -18,32 +18,30 @@ int main() {
 
     cout << "Polynomial p2: " << p2 << endl;							// Print p2
 
-    Poly pp(p1);
-    cout << "copied p1 to pp: " << pp << endl;
-//    Poly p3 = p1 + p2;													// Add p1 and p2
-//    cout << "Sum of polynomials p1 and p2: " << p3 << endl;
-//
-//    p3 = p1 + 3;														// Add p1 and 3
-//    cout << "Sum of polynomial p1 and 3: " << p3 << endl;
-//
-//    p3 = 3 + p1;														// Add 3 and p1
-//    cout << "Sum of 3 and polynomial p1: " << p3 << endl;
-//
-//    p3 = p1 - p2;														// Subtract p2 from p1
-//    cout << "Difference of polynomials p1 and p2: " << p3 << endl;
-//
-//    p3 = p1 - 7;														// Subtract 7 from p1
-//    cout << "Difference of polynomial p1 and 7: " << p3 << endl;
-//
-//    p3 = 7 - p1;														// Subtract p1 from 7
-//    cout << "Difference of 7 and polynomial p1: " << p3 << endl;
-//
-//    p3 = p1 * p2;														// Multiply p1 by p2
-//    cout << "Product of polynomials p1 and p2: " << p3 << endl;
-//
-//    p3 = 2 * p1;														// Multiply p1 by 2
-//    cout << "Polynomial p1 multiplied by 2: " << p3 << endl;
-//
+    Poly p3 = p1 + p2;													// Add p1 and p2
+    cout << "Sum of polynomials p1 and p2: " << p3 << endl;
+
+    p3 = p1 + 3;														// Add p1 and 3
+    cout << "Sum of polynomial p1 and 3: " << p3 << endl;
+
+    p3 = 3 + p1;														// Add 3 and p1
+    cout << "Sum of 3 and polynomial p1: " << p3 << endl;
+
+    p3 = p1 - p2;														// Subtract p2 from p1
+    cout << "Difference of polynomials p1 and p2: " << p3 << endl;
+
+    p3 = p1 - 7;														// Subtract 7 from p1
+    cout << "Difference of polynomial p1 and 7: " << p3 << endl;
+
+    p3 = 7 - p1;														// Subtract p1 from 7
+    cout << "Difference of 7 and polynomial p1: " << p3 << endl;
+
+    p3 = p1 * p2;														// Multiply p1 by p2
+    cout << "Product of polynomials p1 and p2: " << p3 << endl;
+
+    p3 = 2 * p1;														// Multiply p1 by 2
+    cout << "Polynomial p1 multiplied by 2: " << p3 << endl;
+
 //    p3 = -p2;															// Calculate negation of p2
 //    cout << "Negation of polynomial p2: " << p3 << endl;
 //

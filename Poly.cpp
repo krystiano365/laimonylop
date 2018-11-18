@@ -6,74 +6,58 @@
 #include <math.h>
 #include "Poly.h"
 
-//Poly& Poly::operator= (double coeff) {
-//	word w(coeff);
-//	polynomial.emplace_back(w);
-//	words_no++;
-//	return *this;
 
-Poly::Poly() {
-	words_no = 0;
-	freeTerm = 0;
-}
+
 
 Poly::Poly(double coeff) {
-	words_no = 0;
-	if (freeTerm != 0) {
-		freeTerm = coeff;
+	if (coeff != 0) {
+		polynomial[0] = coeff;
 	}
 }
 
+
+
+
 Poly::Poly(const Poly& p) {
-	this->words_no = p.words_no;
-	for(word w : p.polynomial) {
-		this->polynomial.emplace_back(w);
+	for(pair<int, double> w : p.polynomial) {
+		this->polynomial.emplace(w);
 	}
-	this->freeTerm = p.freeTerm;
 }
+
 
 
 
 double& Poly::operator[] (const int index) {
-	if (index == 0) {
-		return freeTerm;
-	} else {
-		unsigned int i = words_no;
-		word w(index);
-		polynomial.emplace_back(w);
-		words_no++;
-		return polynomial.at(i).coeff;
-	}
+	return polynomial[index];
 }
 
 
-//}
 
-//void Poly::print(){
-//	cout << to_string(polynomial.at(words_no - 1).index) + ", " + to_string(polynomial.at(words_no - 1).coeff) << endl;
-//}
 
 ostream& operator<<(ostream &os, const Poly &poly) {
-	bool notFirst = false;
-	bool sign = false;
-	bool nonZeroFreeTerm = false;
-//	os << "words no:" << poly.words_no << endl;
-	for (auto iterator : poly.polynomial) {
-		double coeff = iterator.coeff;
-		int index = iterator.index;
+	bool sign = false;			// while true it doesn't allow to print a + sign when minus sign has already occured
+	bool wasNoDigit = true;		// while true it doesn't allow to print a + sign if there was no number before
+	//	os << "words no:" << poly.words_no << endl;
+	for (pair<int, double> it : poly.polynomial) {
+		double coeff = it.second;
+		int index = it.first;
 
 		if(coeff < 0) {
 			os << " - ";
 			sign = true;
 		}
 
-		if(notFirst && !sign) {
+		if(!wasNoDigit && !sign) {
 				os << " + ";
 		}
 
-		if(coeff != 0) {
-			os << fabs(coeff);
-		}
+		wasNoDigit = false;
+
+//		if(coeff != 0) {
+		os << fabs(coeff);
+//		} else {
+//			wasZero = true;
+//		}
 
 		if(index >= 1) {
 			os << "x";
@@ -82,55 +66,79 @@ ostream& operator<<(ostream &os, const Poly &poly) {
 		if(index > 1) {
 			os << "^" << index;
 		}
-		notFirst = true;
 		sign = false;
 	}
-
-	if(poly.freeTerm > 0) {
-		os << " + " ;
-		nonZeroFreeTerm = true;
-	} else if(poly.freeTerm < 0) {
-		os << " - ";
-		nonZeroFreeTerm = true;
-	}
-	if(nonZeroFreeTerm) os << poly.freeTerm;
-
 	return os;
 }
 
+
+
+
 Poly operator+(const Poly &p1, const Poly &p2) {
-	Poly temp(p1);
-	int index1, index2;
-	int greaterPolyWords_no = p1.words_no > p2.words_no ? p1.words_no : p2.words_no;
-	while()
-//	for (unsigned int i = 0; i < greaterPolyWords_no; i++) {
-//		index1 = 0;
-//		index2 = 0;
-//
-//		if(i < p1.words_no) {
-//			index1 = p1.polynomial.at(i).index;
+	Poly temp(p1);			//initializing temp with one of inputted polynomials
+	int index1;
+	for(pair<int, double> it : p2.polynomial) {
+		index1 = it.first;
+		temp[index1] = temp[index1] + p2.polynomial.at(index1);
+		if(temp.polynomial.at(index1) == 0) temp.polynomial.erase(index1);
+	}
+	//	for (unsigned int i = 0; i < greaterPolyWords_no; i++) {
+
+//	return temp;
+//	temp.freeTerm = p1.freeTerm + p2.freeTerm;
+//	cout << temp[2] << endl;
+//	}
 //		}
-//
-//		if(i < p2.words_no) {
-//			index2 = p2.polynomial.at(i).index;
-//		}
-//
-//		if(index1 > index2) {
+//			temp[index1] = p1.polynomial.at(i).coeff + p2.polynomial.at(i).coeff;
+//		} else {
 //			temp[index1] = p1.polynomial.at(i).coeff;
 //			temp[index2] = p2.polynomial.at(i).coeff;
 //		} else if(index1 < index2) {
 //			temp[index2] = p2.polynomial.at(i).coeff;
 //			temp[index1] = p1.polynomial.at(i).coeff;
-//		} else {
-//			temp[index1] = p1.polynomial.at(i).coeff + p2.polynomial.at(i).coeff;
+//		if(index1 > index2) {
+//
 //		}
-//	}
-//	cout << temp[2] << endl;
-//	temp.freeTerm = p1.freeTerm + p2.freeTerm;
-//	return temp;
+//			index2 = p2.polynomial.at(i).index;
+//		if(i < p2.words_no) {
+//
+//		}
+//			index1 = p1.polynomial.at(i).index;
+//		if(i < p1.words_no) {
+//
+//		index2 = 0;
+//		index1 = 0;
+	return temp;
 }
 
-Poly &Poly::operator=(const Poly &p) {
+
+
+
+Poly operator-(const Poly &p1, const Poly &p2) {
+	Poly temp(p1);
+	int index;
+	for(pair<int, double> it : p2.polynomial) {
+		index = it.first;
+		temp[index] = temp[index] - p2.polynomial.at(index);
+		if(temp.polynomial.at(index) == 0) temp.polynomial.erase(index);
+	}
+	return temp;
+}
+
+Poly operator*(const Poly &p1, const Poly &p2) {
+	Poly result;
+	Poly temp;
+	for(pair<int, double> it1 : p1.polynomial) {
+		temp.polynomial.clear();
+		for(pair<int, double> it2 : p2.polynomial) {
+			temp[it1.first + it2.first] = it1.second * it2.second;
+		}
+		result = operator+(temp, result);
+	}
+	return result;
+}
+
+Poly &Poly::operator-(const Poly &p) {
 
 }
 

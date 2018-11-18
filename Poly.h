@@ -4,35 +4,23 @@
 
 #ifndef POLYNOMIAL_POLY_H
 #define POLYNOMIAL_POLY_H
-#include <vector>
 #include <ostream>
+#include <map>
 
 using namespace std;
 
 class Poly {
 private:
-	struct word{
-		word(){
-			coeff = 0;
-			index = 0;
-		};
-		word(int i){
-			coeff = 0;
-			index = i;
-		};
-		int index;
-		double coeff;
-	};
-	double freeTerm;
-	unsigned int words_no;
-	vector<word> polynomial;
+	map<int, double> polynomial;
 public:
-	Poly();
+	Poly() = default;
 	Poly(double coeff);
 	Poly(const Poly& p);
 	~Poly() = default;
-	Poly& operator= (const Poly& p);
 	friend Poly operator+ (const Poly& p1, const Poly& p2);
+	friend Poly operator- (const Poly& p1, const Poly& p2);
+	friend Poly operator* (const Poly& p1, const Poly& p2);
+	Poly& operator- (const Poly& p);
 	double& operator[] (int index);
 	friend ostream& operator<< (ostream& ostr, const Poly& poly);
 };
