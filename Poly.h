@@ -20,7 +20,8 @@ public:
 	friend Poly operator+ (const Poly& p1, const Poly& p2);
 	friend Poly operator- (const Poly& p1, const Poly& p2);
 	friend Poly operator* (const Poly& p1, const Poly& p2);
-	Poly& operator- (const Poly& p);
+	friend Poly operator- (const Poly& p);
+	double operator() (double val);
 	double& operator[] (int index);
 	friend ostream& operator<< (ostream& ostr, const Poly& poly);
 };

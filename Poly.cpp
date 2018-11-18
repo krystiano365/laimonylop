@@ -138,8 +138,24 @@ Poly operator*(const Poly &p1, const Poly &p2) {
 	return result;
 }
 
-Poly &Poly::operator-(const Poly &p) {
+Poly operator-(const Poly &p) {
+	Poly temp;
+	for(pair<int,double> it : p.polynomial) {
+		temp[it.first] = -(it.second);
+	}
+	return temp;
+}
 
+double Poly::operator()(const double val) {
+	double result = 0;
+	for(pair<int, double> it : polynomial) {
+		if(it.first != 0) {
+			result += (it.second * pow(val, it.first));
+		} else {
+			result += it.second;
+		}
+	}
+	return result;
 }
 
 

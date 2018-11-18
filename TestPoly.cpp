@@ -42,9 +42,9 @@ int main() {
     p3 = 2 * p1;														// Multiply p1 by 2
     cout << "Polynomial p1 multiplied by 2: " << p3 << endl;
 
-//    p3 = -p2;															// Calculate negation of p2
-//    cout << "Negation of polynomial p2: " << p3 << endl;
-//
-//    double val = p1(1.5);												// Calculate value of p1 at point 1.5
-//    cout << "Value of polynomial p1 at point 1.5: " << val << endl;
+    p3 = -p2;															// Calculate negation of p2
+    cout << "Negation of polynomial p2: " << p3 << endl;
+
+    double val = p1(1.5);												// Calculate value of p1 at point 1.5
+    cout << "Value of polynomial p1 at point 1.5: " << val << endl;
 };
