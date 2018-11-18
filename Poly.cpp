@@ -102,6 +102,7 @@ Poly operator+(const Poly &p1, const Poly &p2) {
 	Poly temp(p1);
 	int index1, index2;
 	int greaterPolyWords_no = p1.words_no > p2.words_no ? p1.words_no : p2.words_no;
+	while()
 //	for (unsigned int i = 0; i < greaterPolyWords_no; i++) {
 //		index1 = 0;
 //		index2 = 0;
